@@ -13,10 +13,10 @@ RUN mvn clean package
 
 # Use OpenJDK to run the app
 FROM openjdk:17-jdk-slim
-WORKDIR /app
+WORKDIR /Doctor_Application
 
 # Adjust the path to the JAR file based on your structure
-COPY --from=build /app/Doctor_Application/target/Doctor_Application-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /Doctor_Application/target/Doctor_Application-0.0.1-SNAPSHOT.jar app.jar
 
 # Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
