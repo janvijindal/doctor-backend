@@ -1,4 +1,4 @@
-#Use the official Maven image to build the app
+# Use the official Maven image to build the app
 FROM maven:3.8.5-openjdk-17 AS build
 
 # Set the working directory
@@ -17,4 +17,4 @@ WORKDIR /app
 COPY --from=build /app/target/Doctor_Application-0.0.1-SNAPSHOT.jar app.jar
 
 # Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"] this is my docker file
+ENTRYPOINT ["java", "-jar", "app.jar"]
