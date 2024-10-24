@@ -15,7 +15,7 @@ RUN mvn clean package
 FROM openjdk:17-jdk-slim
 WORKDIR /Doctor_Application
 
-# Adjust the path to the JAR file based on your structure
+# Adjust the path to the JAR file based on your structure here is the change
 COPY --from=build /Doctor_Application/target/Doctor_Application-0.0.1-SNAPSHOT.jar app.jar
 
 # Run the application
