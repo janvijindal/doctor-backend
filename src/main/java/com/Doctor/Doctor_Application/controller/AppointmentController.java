@@ -69,5 +69,11 @@ public class AppointmentController {
         }
     }
 
+     @GetMapping()
+    public ResponseEntity<List<Appointment>> getAppointments(){
+          List<Appointment> appointments=appointmentService.getAllAppointments();
+          return ResponseEntity.ok(appointments);
+    }
+
 }
 
