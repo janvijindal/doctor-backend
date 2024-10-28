@@ -103,6 +103,10 @@ public class AppointmentService {
         appointmentRepository.save(existingAppointment);
     }
 
+     public List<Appointment> getAllAppointments(){
+          return appointmentRepository.findAll();
+    }
+
 
 
 }
