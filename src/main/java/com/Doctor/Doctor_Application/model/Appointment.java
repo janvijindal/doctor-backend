@@ -28,7 +28,6 @@ public class Appointment {
       @DBRef
       private Doctor doctor;
       @DBRef
-      @JsonIgnore
       private User user;
 
     public ObjectId getId() {
