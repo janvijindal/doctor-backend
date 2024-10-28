@@ -2,6 +2,7 @@ package com.Doctor.Doctor_Application.controller;
 
 import com.Doctor.Doctor_Application.model.Appointment;
 import com.Doctor.Doctor_Application.model.User;
+import com.Doctor.Doctor_Application.response.AppointmentDTO;
 import com.Doctor.Doctor_Application.service.AppointmentService;
 import com.Doctor.Doctor_Application.service.UserService;
 import org.bson.types.ObjectId;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/appointments")
@@ -69,10 +71,25 @@ public class AppointmentController {
         }
     }
 
-     @GetMapping()
-    public ResponseEntity<List<Appointment>> getAppointments(){
-          List<Appointment> appointments=appointmentService.getAllAppointments();
-          return ResponseEntity.ok(appointments);
+
+
+    @GetMapping
+    public ResponseEntity<List<AppointmentDTO>> getAppointments() {
+        List<Appointment> appointments = appointmentService.getAllAppointments();
+
+        // Convert Appointment entities to AppointmentDTOs
+        List<AppointmentDTO> appointmentDTOs = appointments.stream()
+                .map(appointment -> new AppointmentDTO(
+                        appointment.getTime(), // assuming time includes date
+                        appointment.getSlot(), // adjust this if time and date are separate fields
+                        appointment.getNote(),
+                        appointment.getDoctor().getName(),
+                        appointment.getDoctor().getImage(),
+                        appointment.getUser().getUserName()
+                ))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(appointmentDTOs);
     }
 
 }
