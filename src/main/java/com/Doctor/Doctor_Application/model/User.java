@@ -1,6 +1,7 @@
 package com.Doctor.Doctor_Application.model;
 
 import com.Doctor.Doctor_Application.domain.ObjectIdSerializer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import org.bson.types.ObjectId;
@@ -58,6 +59,7 @@ public class User {
     private String email;
     private String password;
     @DBRef
+    @@JsonIgnore
     private List<Appointment> appointments=new ArrayList<>();
 
     public List<Appointment> getAppointments() {
