@@ -59,7 +59,7 @@ public class User {
     private String email;
     private String password;
     @DBRef
-    @@JsonIgnore
+    @JsonIgnore
     private List<Appointment> appointments=new ArrayList<>();
 
     public List<Appointment> getAppointments() {
